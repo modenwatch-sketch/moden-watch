@@ -54,7 +54,9 @@ faqItems.forEach((item) => {
 });
 
 if (estimateForm && feedback) {
-  estimateForm.addEventListener("submit", (event) => {
+  const submitButton = estimateForm.querySelector(".submit-button");
+
+  estimateForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!estimateForm.checkValidity()) {
@@ -62,8 +64,41 @@ if (estimateForm && feedback) {
       return;
     }
 
-    feedback.textContent = "문의가 접수된 것으로 표시하는 더미 응답입니다.";
-    estimateForm.reset();
+    const formData = new FormData(estimateForm);
+    const originalButtonText = submitButton?.textContent;
+
+    feedback.textContent = "문의 전송 중입니다. 잠시만 기다려 주세요.";
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "전송 중...";
+    }
+
+    try {
+      const response = await fetch(estimateForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        feedback.textContent = "문의가 정상적으로 접수되었습니다. 확인 후 빠르게 연락드리겠습니다.";
+        estimateForm.reset();
+      } else {
+        feedback.textContent =
+          result.message || "문의 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.";
+      }
+    } catch (error) {
+      feedback.textContent = "문의 전송에 실패했습니다. 전화 또는 카카오톡으로 문의해 주세요.";
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText || "문의 보내기";
+      }
+    }
   });
 }
 

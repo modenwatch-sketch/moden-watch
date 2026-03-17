@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
-    <a class="floating-chat" href="https://pf.kakao.com/" target="_blank" rel="noopener" aria-label="카카오톡 채널 문의">
+    <a class="floating-chat" href="https://open.kakao.com/o/s8MupTki" target="_blank" rel="noopener" aria-label="카카오톡 채널 문의">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#3C1E1E" style="display:block;">
         <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.721 1.57 5.117 3.963 6.574l-.93 3.46a.3.3 0 0 0 .44.328L9.82 18.9A11.3 11.3 0 0 0 12 19.1c5.523 0 10-3.477 10-7.8S17.523 3 12 3z"/>
       </svg>
@@ -96,7 +96,7 @@
                 </span>
                 문의 010 9357 9898
               </a>
-              <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="action-btn action-btn-kakao action-btn-large">
+              <a href="https://open.kakao.com/o/s8MupTki" target="_blank" rel="noopener" class="action-btn action-btn-kakao action-btn-large">
                 <span class="action-icon action-icon-kakao" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 5C7.6 5 4 7.8 4 11.2C4 13.3 5.3 15.1 7.3 16.2L6.5 19L9.9 17.2C10.6 17.3 11.3 17.4 12 17.4C16.4 17.4 20 14.6 20 11.2C20 7.8 16.4 5 12 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -290,7 +290,7 @@
                   </span>
                   문의 010 9357 9898
                 </a>
-                <a href="https://pf.kakao.com/" target="_blank" rel="noopener" class="action-btn action-btn-kakao">
+                <a href="https://open.kakao.com/o/s8MupTki" target="_blank" rel="noopener" class="action-btn action-btn-kakao">
                   <span class="action-icon action-icon-kakao" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 5C7.6 5 4 7.8 4 11.2C4 13.3 5.3 15.1 7.3 16.2L6.5 19L9.9 17.2C10.6 17.3 11.3 17.4 12 17.4C16.4 17.4 20 14.6 20 11.2C20 7.8 16.4 5 12 5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
@@ -363,7 +363,32 @@
               </div>
             </div>
 
-            <form class="estimate-form" id="estimateForm">
+            <form
+              class="estimate-form"
+              id="estimateForm"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <input type="hidden" name="access_key" value="2fb0c97c-893e-446e-97ed-9c3777eeddca" />
+              <input type="hidden" name="subject" value="MODEN WATCH 견적 문의" />
+              <input type="hidden" name="from_name" value="MODEN WATCH" />
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabindex="-1"
+                autocomplete="off"
+                style="display:none"
+              />
+              <div class="field-row">
+                <label for="email">이메일</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="example@gmail.com"
+                  required
+                />
+              </div>
               <div class="field-row">
                 <label for="phone">연락처</label>
                 <input id="phone" name="phone" type="tel" placeholder="010 9357 9898" required />
@@ -376,29 +401,29 @@
                 <label for="tradeType">거래방법</label>
                 <select id="tradeType" name="tradeType" required>
                   <option value="">거래방법을 선택하세요</option>
-                  <option value="sell">판매</option>
-                  <option value="buy">구매</option>
-                  <option value="swap">교환</option>
+                  <option value="판매">판매</option>
+                  <option value="구매">구매</option>
+                  <option value="교환">교환</option>
                 </select>
               </div>
               <div class="field-row">
                 <label for="details">문의사항</label>
                 <textarea
                   id="details"
-                  name="details"
+                  name="message"
                   rows="8"
-                  placeholder="브랜드명, 모델명, 연식, 상태 등을 더미로 입력하세요."
+                  placeholder="브랜드명, 모델명, 연식, 상태, 구성품 여부 등을 입력해 주세요."
                   required
                 ></textarea>
               </div>
               <label class="consent-row" for="consent">
                 <input id="consent" name="consent" type="checkbox" required />
                 <span>
-                  개인정보 수집 및 이용에 동의합니다. 실제 운영 시 문구는 의뢰인 정책에 맞게
-                  교체하면 됩니다.
+                  개인정보 수집 및 이용에 동의합니다. 접수된 정보는 상담 진행 목적으로만
+                  사용됩니다.
                 </span>
               </label>
-              <button class="primary-button submit-button" type="submit">send message</button>
+              <button class="primary-button submit-button" type="submit">문의 보내기</button>
               <p class="form-feedback" role="status" aria-live="polite"></p>
             </form>
           </div>
